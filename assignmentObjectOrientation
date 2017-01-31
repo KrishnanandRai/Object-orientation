@@ -1,0 +1,183 @@
+1. What is the output of the following program?
+package main; 
+class Parent {
+    public void display() {
+        System.out.println("Parent");
+    }         
+}
+class Child extends Parent {    
+    public void display() {
+        System.out.println("Derived");
+    }
+}
+class Main{
+    public static void doDisplay( Parent o ) {
+        o.display();   
+    }
+
+    public static void main(String[] args) {
+        Parent x = new Parent();
+        Parent y = new Child();
+        Child z = new Child();
+        doDisplay(x);                                 // Parent
+        doDisplay(y);                                // Derived
+        doDisplay(z);                               // Derived
+    }
+}
+
+
+/*OUTPUT--- Parent
+	    Derived
+	    Derived
+
+*/
+
+
+2. What is the output of following program?
+class Coordinate {
+    int x, y;
+
+    public Coordinate(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+public class Main {
+    public static void main(String args[]) {
+        Coordinate p = new Coordinate();                     // compilation error
+        System.out.println("x = " + p.x + ", y = " + p.y);
+    }
+}
+
+
+
+/*  OUTPUT --- Compilation error 
+		no matching constructor
+
+*/
+
+
+
+3. What is the output of following program?
+public class Test {    
+    int x = 2;
+    Test(int i) { x = i; } 
+    public static void main(String[] args) {    
+         Test t = new Test(5);
+         System.out.println("x = " + t.x);                   // x=5
+    }
+}
+
+
+
+/*OUTPUT---  x = 5
+
+
+
+*/
+
+
+
+4. What is the output of following program?
+class SuperClass {
+    protected void foo() {}
+}
+class Child extends SuperClass {
+    void foo() {}                                    // compilation error
+}
+public class Test {
+    public static void main(String args[]) {
+        Child child = new Child();
+        child.foo();
+    }
+}
+
+
+
+/* OUTPUT--- Compilation error 
+		assigning weaker access to child class function
+
+
+*/
+
+5. What is the output of the following program?
+public class Test {
+    public static void test(String s)
+    {
+        System.out.println("In String");
+    }
+    public static void test(Object o) {         
+        System.out.println("In Object");
+    }
+
+    public static void main(String args[]) {
+        test(null);
+    }
+}
+
+
+/*OUTPUT ---    In String
+
+
+*/
+
+
+
+
+1. How do you implement multiple inheritance in java?
+
+	only Using interfaces 
+		 
+		interface Parent1 { }
+		interface Parent2 { }
+		class Child implements Parent1, Parent2 {
+		   /* This class has fuctions declared in interface (Parent1 OR Parent2)*/	
+		 }
+
+
+
+2.  How do you restrict a member of a class from inheriting to it’s sub classes.?
+
+   	Member of a class from inheriting to it's sub-class by declaring it private
+
+
+3. Are constructors and initializers also inherited to sub classes.?
+
+ 	No constructors and initializers are not inherited to sub-class
+	because they are not needed 
+	Derived class constructor implicitaly calls it's super-class constructor;
+	
+
+	
+
+4. Are static members inherited to sub classes?
+
+	YES, static members are inherted to sub classes.
+        they can be accessed by using child class name or by using child class object.
+	But if new static method with same signature is created in sub-class, The old static method is just hidden not overridden.
+
+
+
+
+5. Can we use a field or a method declared without access modifiers outside the package.?
+
+	NO, we can not do so,
+ 	because default method or default field act as private ouside the package.	
+
+				
+
+
+
+6. Can a top level class be private or protected? 
+	
+	A top level class can not be private because any other class can not acces it 
+	henece it will become useless.
+	since a top level class has no super-class , it is bit confusing to be accessible outside the package using the super-class.
+	and within the package protected is same as public.
+        
+
+
+ 
+
+
+
